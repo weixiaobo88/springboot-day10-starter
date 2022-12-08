@@ -173,5 +173,28 @@ public class EmployeeControllerTest {
         assertThat(employeeMongoRepository.findAll(), empty());
     }
 
+    @Test
+    void should_return_404_when_perform_get_by_id_given_id_not_exist() throws Exception {
+        // given
+        // when
+        // then
+        client.perform(MockMvcRequestBuilders.get("/employees/{id}", new ObjectId().toString()))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    void should_return_404_when_perform_put_by_id_given_id_not_exist() throws Exception {
+        // given
+        String id = new ObjectId().toString();
+        Employee updateEmployee = new Employee(id, "Jim", 20, "Male", 55000);
+        String updateEmployeeJson = new ObjectMapper().writeValueAsString(updateEmployee);
+
+        // when
+        // then
+        client.perform(MockMvcRequestBuilders.put("/employees/{id}", id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(updateEmployeeJson))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
 
 }

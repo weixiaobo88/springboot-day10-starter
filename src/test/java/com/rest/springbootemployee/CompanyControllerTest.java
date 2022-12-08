@@ -235,4 +235,28 @@ public class CompanyControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].gender", containsInAnyOrder("Female", "Female")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].salary", containsInAnyOrder(2000, 8000)));
     }
+
+    @Test
+    void should_return_404_when_perform_get_by_id_given_id_not_exist() throws Exception {
+        // given
+        // when
+        // then
+        client.perform(MockMvcRequestBuilders.get("/companies/{id}", new ObjectId().toString()))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    void should_return_404_when_perform_put_by_id_given_id_not_exist() throws Exception {
+        // given
+        String id = new ObjectId().toString();
+        Company company = new Company(id, "Goola", null);
+        String newCompanyJson = new ObjectMapper().writeValueAsString(company);
+
+        // when
+        // then
+        client.perform(MockMvcRequestBuilders.put("/companies/{id}", company.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(newCompanyJson))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
 }
