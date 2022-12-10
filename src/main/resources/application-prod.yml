@@ -4,5 +4,5 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}/test
+      uri: mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}
       database: ${DATABASE_NAME}
