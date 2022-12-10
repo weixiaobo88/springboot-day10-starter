@@ -8,6 +8,14 @@ plugins {
     id 'java'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.rest.springbootemployee.SpringBootEmployeeApplication'
+        )
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -19,7 +27,7 @@ dependencies {
     testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:3.5.3'
 }
 
-group = 'com.thoughtworks'
+group = 'com.rest'
 version = '0.0.1-SNAPSHOT'
 description = 'spring-boot-employee'
 sourceCompatibility = '1.8'
