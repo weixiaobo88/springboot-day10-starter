@@ -4,5 +4,5 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}
+      uri: mongodb://${MONGOUSER}}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}
       name: test
